@@ -7,11 +7,13 @@ import { Grid, CssBaseline } from '@material-ui/core'
 
 function App() {
 
+  // AIzaSyAi5hFSUpw-_Ev7RHeu7AQQ5xWyyrPO8EE
+
   return (
     <>
       <CssBaseline />
       <Header />
-      <Grid container spacing={3} style={{width:'100%'}}  >
+      <Grid container spacing={3} style={{width:'100vw'}}  >
         <Grid item xs={12} md={4} >
           <List/>
         </Grid>

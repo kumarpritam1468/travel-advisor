@@ -14,7 +14,7 @@ const Header = () => {
           Travel Advisor
         </Typography>
         <Box display='flex' >
-          <Typography variant='h7' className={classes.title} >
+          <Typography variant='subtitle1' className={classes.title} >
             Explore new places
           </Typography>
           {/* <Autocomplete> */}
