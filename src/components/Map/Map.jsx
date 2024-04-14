@@ -6,11 +6,9 @@ import {Rating} from '@material-ui/lab'
 
 import useStyles from './styles';
 
-const Map = () => {
+const Map = ({ setBounds, setCoordinates, coordinates}) => {
   const classes = useStyles();
-  // const isMobile = useMediaQuery('(min-width:600px)');
-
-  const coordinates = { lat: 20.462521, lng: 85.882988 }
+  const isMobile = useMediaQuery('(min-width:600px)');
 
   return (
     <div className={classes.mapContainer} style={{width:'66.5vw'}}>
@@ -21,7 +19,10 @@ const Map = () => {
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
         // options={''}
-        // onChange={''}
+        onChange={(e) => {
+          setCoordinates({lat: e.center.lat, lng: e.center.lng});
+          setBounds({ne: e.marginBounds.ne, nw: e.marginBounds.nw, se: e.marginBounds.se, sw: e.marginBounds.sw});
+        }}
         // onChildClick={''}
       >
         <LocationOnOutlinedIcon/>
