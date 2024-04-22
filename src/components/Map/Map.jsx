@@ -6,9 +6,9 @@ import {Rating} from '@material-ui/lab'
 
 import useStyles from './styles';
 
-const Map = ({ setBounds, setCoordinates, coordinates}) => {
+const Map = ({ setBounds, setCoordinates, coordinates, places}) => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(min-width:600px)');
+  const isDesktop = useMediaQuery('(min-width:600px)');
 
   return (
     <div className={classes.mapContainer} style={{width:'66.5vw'}}>
@@ -25,7 +25,27 @@ const Map = ({ setBounds, setCoordinates, coordinates}) => {
         }}
         // onChildClick={''}
       >
-        <LocationOnOutlinedIcon/>
+        {places?.map((place, index) => (
+          <div
+            className={classes.mapContainer}
+            key={index}
+            lat={Number(place.latitude)}
+            lng={Number(place.longitude)}
+          >
+            {
+              !isDesktop ? (
+                <LocationOnOutlinedIcon color='primary' fontSize='large' />
+              ) : (
+                <Paper elevation={3} className={classes.paper}>
+                  <Typography className={classes.Typography} variant='subtitle2' gutterBottom>
+                    {place.name}
+                  </Typography>
+                  <img src={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1682337180.jpg?fit=around|562.5:360&crop=562.5:360;*,*'} alt={place.name} className={classes.pointer} />
+                </Paper>
+              )
+            }
+          </div>
+        ))}
       </GoogleMapReact>
     </div>
   )
