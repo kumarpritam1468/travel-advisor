@@ -6,22 +6,20 @@ import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles'
 
-const PlaceDetails = ({place}) => {
+const PlaceDetails = ({ place }) => {
   const classes = useStyles();
   return (
     <Card elevation={6}>
-      <CardMedia style={{height: 350}} image={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1682337180.jpg?fit=around|562.5:360&crop=562.5:360;*,*'} title={place.name} />
+      <CardMedia style={{ height: 350 }} image={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1682337180.jpg?fit=around|562.5:360&crop=562.5:360;*,*'} title={place.name} />
 
       <CardContent>
         <Typography gutterBottom variant='h5' >
           {place.name}
         </Typography>
         <Box display='flex' justifyContent='space-between' >
-          <Typography variant='subtitle1' >
-            Price
-          </Typography>
+          <Rating value={Number(place.rating)} readOnly />
           <Typography gutterBottom variant='subtitle1' >
-            {place.price_level}
+            Reviewed by {place.num_reviews} users
           </Typography>
         </Box>
         <Box display='flex' justifyContent='space-between' >
@@ -42,20 +40,20 @@ const PlaceDetails = ({place}) => {
           </Box>
         ))}
 
-        {place?.cuisine?.map(({name}) => (
+        {place?.cuisine?.map(({ name }) => (
           <Chip key={name} size='small' label={name} className={classes.chip} />
         ))}
 
         {place?.address && (
           <Typography gutterBottom variant='body2' color='textSecondary' className={classes.subtitle}>
-            <LocationOnOutlined/>
+            <LocationOnOutlined />
             {place.address}
           </Typography>
         )}
 
         {place?.address && (
           <Typography gutterBottom variant='body2' color='textSecondary' className={classes.subtitle}>
-            <PhoneIcon/>
+            <PhoneIcon />
             {place.phone}
           </Typography>
         )}

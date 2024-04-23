@@ -33,14 +33,14 @@ const Map = ({ setBounds, setCoordinates, coordinates, places}) => {
             lng={Number(place.longitude)}
           >
             {
-              !isDesktop ? (
-                <LocationOnOutlinedIcon color='primary' fontSize='large' />
-              ) : (
+              !isDesktop ?
+                <LocationOnOutlinedIcon color='primary' fontSize='large' /> : (
                 <Paper elevation={3} className={classes.paper}>
-                  <Typography className={classes.Typography} variant='subtitle2' gutterBottom>
+                  <Typography variant='h2' gutterBottom>
                     {place.name}
                   </Typography>
                   <img src={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1682337180.jpg?fit=around|562.5:360&crop=562.5:360;*,*'} alt={place.name} className={classes.pointer} />
+                  <Rating size='small' value={Number(place.rating)} readOnly />
                 </Paper>
               )
             }
