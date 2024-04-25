@@ -6,8 +6,10 @@ import Rating from '@material-ui/lab/Rating';
 
 import useStyles from './styles'
 
-const PlaceDetails = ({ place }) => {
+const PlaceDetails = ({ place, selected, refProp }) => {
   const classes = useStyles();
+
+  if(selected) refProp?.current?.scrollIntoView({behaviour: "smooth", block:"start"})
   return (
     <Card elevation={6}>
       <CardMedia style={{ height: 350 }} image={place.photo ? place.photo.images.large.url : 'https://b.zmtcdn.com/data/collections/2e5c28a5fbcb2b35d84c0a498b0e1ba2_1682337180.jpg?fit=around|562.5:360&crop=562.5:360;*,*'} title={place.name} />
